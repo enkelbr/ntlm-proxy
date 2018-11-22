@@ -2,12 +2,13 @@ sudo: required
 language: python
 services:
 - docker
-after_success:
+before_script:
 - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
 - export REPO=enkelbr/ntlm-proxy
-- export TAG=`if [ "${TRAVIS_BRANCH}" == "master" ]; then echo "latest"; else echo
-  ${TRAVIS_BRANCH} ; fi`
+- export TAG=`if [ "${TRAVIS_BRANCH}" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH} ; fi`
+script:
 - docker build -f Dockerfile -t ${REPO}:${TRAVIS_COMMIT::8} .
 - docker tag ${REPO}:${TRAVIS_COMMIT::8} ${REPO}:${TAG}
 - docker tag ${REPO}:${TRAVIS_COMMIT::8} ${REPO}:travis-${TRAVIS_BUILD_NUMBER}
+after_success:
 - docker push ${REPO}
