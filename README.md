@@ -1,5 +1,7 @@
 # ntlm-proxy
 
+[![Build Status](https://travis-ci.org/enkelbr/ntlm-proxy.svg?branch=master)](https://travis-ci.org/enkelbr/ntlm-proxy)
+
 This is a python project that is meant to serve as a reverse proxy to a service that requires NTLM authentication. If you want to authenticate with just one user and want to abstract this to your clients, you can use this proxy to perform this authentication.
 
 ## LICENSE
