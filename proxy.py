@@ -20,7 +20,7 @@ def hello(path):
 
     app.logger.info(url)
 
-    r = requests.get(url, auth=HttpNtlmAuth(username, password))
+    r = requests.get(url, auth=HttpNtlmAuth(username, password), verify=False)
 
     excluded_headers = ['content-encoding', 'content-length', 'transfer-encoding', 'connection']
     headers = [(name, value) for (name, value) in r.raw.headers.items()

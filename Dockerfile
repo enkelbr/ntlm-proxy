@@ -3,7 +3,7 @@ FROM python:3.7-alpine
 WORKDIR /usr/src/app
 
 COPY requirements.txt ./
-RUN apk add gcc musl-dev libffi-dev openssl-dev && \
+RUN apk add libssl1.0 gcc musl-dev libffi-dev openssl-dev && \
     pip install --no-cache-dir -r requirements.txt && \
     apk del gcc musl-dev libffi-dev openssl-dev && \
     rm -rf /var/cache/apk/*
